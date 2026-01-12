@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "branding": "Hexlite Studios",
+    "home": "Home",
+    "games": "Games",
+    "about": "About",
+    "resources": "Resources",
+    "signIn": "Sign In",
+    "profile": "Profile"
+  },
+  "home": {
+    "welcome": "Welcome to Hexlite Studios",
+    "tagline": "Your gateway to innovative digital solutions",
+    "goTo404": "Go to a non-existing page to see 404"
+  },
+  "footer": {
+    "copyright": "© 2026 Hexlite Studios. All rights reserved.",
+    "contact": "Contact",
+    "quickLinks": "Quick Links"
+  }
+}
