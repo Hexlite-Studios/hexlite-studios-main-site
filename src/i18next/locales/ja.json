@@ -51,5 +51,14 @@
       "released": "公開済み",
       "in-development": "開発中"
     }
+  },
+  "featuredHero": {
+    "learnMore": "詳細を見る",
+    "title1": "失われた者の光",
+    "newsTitle1": "注目のヒーロー",
+    "description1": "あなたの勇気を試す物語的ホラー体験。闇に注意...",
+    "title2": "ウォーフロント",
+    "newsTitle2": "コンセプトアート公開",
+    "description2": "ウォーフロントの激しい分隊ベースのPvPアクションに飛び込もう。チームを勝利に導け！" 
   }
 }

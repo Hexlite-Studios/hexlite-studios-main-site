@@ -51,5 +51,14 @@
       "released": "Publicado",
       "in-development": "En desarrollo"
     }
+  },
+  "featuredHero": {
+    "learnMore": "Aprende Más",
+    "title1": "Light of the Lost",
+    "newsTitle1": "Héroe Destacado",
+    "description1": "Una experiencia de horror narrativa que pondrá a prueba tu coraje. Cuidado con la oscuridad...",
+    "title2": "Warfront",
+    "newsTitle2": "Revelación de Arte Conceptual",
+    "description2": "Sumérgete en la intensa acción PvP basada en escuadrones de Warfront. ¡Comanda a tu equipo hacia la victoria!"
   }
 }

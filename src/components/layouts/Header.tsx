@@ -20,13 +20,13 @@ function Header() {
     ];
 
     return (
-        <header className="bg-neutral-950 text-gray-200 p-5 shadow-lg border-b border-gray-700">
+        <header className="bg-zinc-800 text-gray-200 p-5 shadow-lg border-b border-gray-700">
             <nav className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-13">
                     <div>
                         <Link to="/" className="flex items-center gap-3">
                             <img src={HexliteLogo} alt="Hexlite Studios Logo" className="h-10 w-10" />
-                            <span className="font-bold text-xl">{t('nav.branding')}</span>
+                            <span className="font-bold text-2xl">{t('nav.branding')}</span>
                         </Link>
                     </div>
 
@@ -38,7 +38,7 @@ function Header() {
                                 <Link
                                     key={link.path}
                                     to={link.path}
-                                    className="relative group hover:text-white transition-colors duration-300"
+                                    className="relative group text-lg hover:text-white transition-colors duration-300"
                                     >
                                         {link.label}
                                         <span className={`
@@ -53,7 +53,7 @@ function Header() {
 
                     <div>
                         <div className="hidden md:flex items-center gap-4">
-                            <Link to="/login" className="hover:text-white transition-colors duration-150 hover:drop-shadow-xl/25">
+                            <Link to="/login" className="text-lg hover:text-white transition-colors duration-150 hover:drop-shadow-xl/25">
                                 {t('nav.signIn')}
                             </Link>
                             <img src={DefaultConcept} alt="User Avatar" className="h-10 w-10 rounded-full bg-gray-600 hover:ring-2 ring-gray-400" />

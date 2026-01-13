@@ -68,7 +68,7 @@ function GameCard ({ game, isOpen, onToggle }: GameCardProps) {
                             <h3 className="text-2xl font-bold mb-1">
                                 {t(game.titleKey)}
                             </h3>
-                            <p className="text-sm italic text-gray-300">
+                            <p className="text-sm italic">
                                 {t(game.taglineKey)}
                             </p>
                         </div>
@@ -77,7 +77,7 @@ function GameCard ({ game, isOpen, onToggle }: GameCardProps) {
                             {game.links.page && (
                                 <Link
                                     to={game.links.page}
-                                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition text-center"
+                                    className="flex-1 bg-slate-700 hover:bg-slate-800 font-semibold py-3 px-4 rounded-lg transition text-center"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     {t('cardDetails.moreInfo')}
@@ -89,7 +89,7 @@ function GameCard ({ game, isOpen, onToggle }: GameCardProps) {
                                     href={game.links.play}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition text-center"
+                                    className="flex-1 bg-sky-500 hover:bg-sky-800 text-white font-semibold py-3 px-4 rounded-lg transition text-center"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                 {t('cardDetails.play')}
