@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { useState } from 'react';
+// import { Link } from 'react-router-dom';
 import type { Game } from '../../data/games';
 
 interface GameCardProps {
@@ -7,24 +7,24 @@ interface GameCardProps {
 }
 
 function GameCard ({ game }: GameCardProps) {
-    const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+    //const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
-    const statusColors = {
-        'upcoming': 'bg-yellow-500',
-        'released': 'bg-green-500',
-        'in-development': 'bg-blue-500',
-    }
+    //const statusColors = {
+    //    'upcoming': 'bg-yellow-500',
+    //    'released': 'bg-green-500',
+    //    'in-development': 'bg-blue-500',
+    //}
 
-    const statusLabels = {
-        'upcoming': 'Upcoming',
-        'released': 'Released',
-        'in-development': 'In Development',
-    }
+    //const statusLabels = {
+    //    'upcoming': 'Upcoming',
+    //    'released': 'Released',
+    //    'in-development': 'In Development',
+    //}
 
     return (
         <div className="relative group">
             <div
-                onClick={() => setIsOverlayOpen(true)}
+                //onClick={() => setIsOverlayOpen(true)}
                 className="relative h-96 overflow-hidden rounded cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-105"
             >
                 <img 
