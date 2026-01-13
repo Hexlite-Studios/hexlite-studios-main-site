@@ -11,11 +11,24 @@
   "home": {
     "welcome": "Welcome to Hexlite Studios",
     "tagline": "Your gateway to innovative digital solutions",
-    "goTo404": "Go to a non-existing page to see 404"
+    "goTo404": "Go to a non-existing page to see 404",
+    "ourGames": "Our Games"
   },
   "footer": {
     "copyright": "© 2026 Hexlite Studios. All rights reserved.",
     "contact": "Contact",
     "quickLinks": "Quick Links"
-  }
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "message": "It may not exist or may be under construction",
+    "goHome": "Go to Home"
+  },
+  "games": {
+    "lotl": {
+      "title": "Light of the Lost",
+      "tagline": "Beware of the darkness",
+      "description": "A narrative horror experience on Roblox"
+    }
+  } 
 }

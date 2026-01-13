@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "branding": "Hexlite Studios",
+    "home": "Inicio",
+    "games": "Juegos",
+    "about": "Acerca de",
+    "resources": "Recursos",
+    "signIn": "Iniciar sesión",
+    "profile": "Perfil"
+  },
+  "home": {
+    "welcome": "Bienvenido a Hexlite Studios",
+    "tagline": "Tu puerta a soluciones digitales innovadoras",
+    "goTo404": "Ve a una página inexistente para ver el 404",
+    "ourGames": "Nuestros Juegos"
+  },
+  "footer": {
+    "copyright": "© 2026 Hexlite Studios. Todos los derechos reservados.",
+    "contact": "Contacto",
+    "quickLinks": "Enlaces Rápidos"
+  },
+  "notFound": {
+    "title": "404 - Página no encontrada",
+    "message": "Puede que no exista o esté en construcción",
+    "goHome": "Volver a Inicio"
+  }
+}

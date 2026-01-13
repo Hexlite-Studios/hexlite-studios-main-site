@@ -3,15 +3,15 @@ import { Link, useLocation } from "react-router-dom";
 import { HexliteLogo, DefaultConcept } from "../../assets/Assets";
 import { useTranslation } from 'react-i18next';
 
+interface NavLink {
+        label: string;
+        path: string;
+}
+
 function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const location = useLocation();
     const { t } = useTranslation();
-
-    interface NavLink {
-        label: string;
-        path: string;
-    }
 
     const navLinks: NavLink[] = [
         { label: t('nav.games'), path: '/' },
