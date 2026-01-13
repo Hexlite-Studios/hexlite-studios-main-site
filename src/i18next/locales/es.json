@@ -12,7 +12,7 @@
     "welcome": "Bienvenido a Hexlite Studios",
     "tagline": "Tu puerta a soluciones digitales innovadoras",
     "goTo404": "Ve a una página inexistente para ver el 404",
-    "ourGames": "Nuestros Juegos"
+    "ourGames": "Todos los Juegos"
   },
   "footer": {
     "copyright": "© 2026 Hexlite Studios. Todos los derechos reservados.",
@@ -20,8 +20,36 @@
     "quickLinks": "Enlaces Rápidos"
   },
   "notFound": {
-    "title": "404 - Página no encontrada",
+    "title": "404 - Página No Encontrada",
     "message": "Puede que no exista o esté en construcción",
-    "goHome": "Volver a Inicio"
+    "goHome": "Ir al Inicio"
+  },
+  "game": {
+    "lotl": {
+      "title": "Light of the Lost",
+      "tagline": "Cuidado con la oscuridad"
+    },
+    "warfront": {
+      "title": "Warfront",
+      "tagline": "Comando de escuadrón PvP"
+    },
+    "projectstatecraft": {
+      "title": "Project: Statecraft",
+      "tagline": "Crear. Gobernar. Prosperar."
+    },
+    "arcaneguardians": {
+      "title": "Arcane Guardians",
+      "tagline": "Desata tu potencial mágico"
+    }
+  },
+  "cardDetails": {
+    "pressHere": "Presiona aquí para más detalles",
+    "moreInfo": "Más información",
+    "play": "Jugar",
+    "status": {
+      "upcoming": "Próximamente",
+      "released": "Publicado",
+      "in-development": "En desarrollo"
+    }
   }
 }
