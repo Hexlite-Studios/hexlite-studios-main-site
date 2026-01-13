@@ -1,10 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-declare module 'swiper/css';
-declare module 'swiper/css/navigation';
-declare module 'swiper/css/pagination';
-declare module 'swiper/css/autoplay';
+import 'swiper/swiper-bundle.css';
 
 
 interface FeaturedItem {
