@@ -22,7 +22,7 @@ interface FeaturedHeroProps {
 function FeaturedHero({ items }: FeaturedHeroProps) {
     const { t } = useTranslation();
     return (
-        <div className="w-full bg-neutral-900">
+        <div className="w-full bg-zinc-950/15">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <Swiper
                     modules={[Navigation, Pagination, Autoplay]}

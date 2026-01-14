@@ -20,7 +20,7 @@ function Header() {
     ];
 
     return (
-        <header className="bg-zinc-800 text-gray-200 p-5 shadow-lg border-b border-gray-700">
+        <header className="bg-zinc-950 text-gray-200 p-5 shadow-lg border-b border-zinc-800">
             <nav className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-13">
                     <div>

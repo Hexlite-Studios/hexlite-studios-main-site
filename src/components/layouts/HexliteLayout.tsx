@@ -6,7 +6,7 @@ function HexliteLayout() {
     return (
         <div>
             <Header />
-            <main className="min-h-screen bg-zinc-800 text-gray-200">
+            <main className="min-h-screen bg-zinc-900 text-gray-200">
                 <Outlet />
             </main>
             <Footer />
