@@ -1,9 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import HexliteLayout from './components/layouts/HexliteLayout';
+import GameLayout from './components/layouts/GameLayout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Resources from './pages/Resources';
 import NotFound from './pages/NotFound';
+import LightofTheLost from './pages/LightofTheLost';
+import ArcaneGuardians from './pages/ArcaneGuardians';
+import Warfront from './pages/Warfront';
 
 function App() {
   return (
@@ -15,6 +19,11 @@ function App() {
           <Route path="/resources" element={<Resources />} />
         </Route>
         <Route path="*" element={<NotFound />} />
+        <Route element={<GameLayout />}>
+          <Route path="/light-of-the-lost" element={<LightofTheLost />} />
+          <Route path="/arcane-guardians" element={<ArcaneGuardians />} />
+          <Route path="/warfront" element={<Warfront />} />
+        </Route>
       </Routes>
     </>
   );

@@ -6,7 +6,8 @@
     "about": "About",
     "resources": "Resources",
     "signIn": "Sign In",
-    "profile": "Profile"
+    "profile": "Profile",
+    "return": "Return"
   },
   "home": {
     "welcome": "Welcome to Hexlite Studios",
@@ -58,7 +59,55 @@
     "newsTitle1": "Featured Hero",
     "description1": "A narrative horror experience that will test your courage. Beware of the darkness...",
     "title2": "Warfront",
-    "newsTitle2": "Concept Art Reveal",
-    "description2": "Dive into the intense squad-based PvP action in Warfront. Command your team to victory!"
+    "newsTitle2": "Game Page Building",
+    "description2": "Placeholder put into action, soon to battle!"
+  },
+  "about": {
+    "title": "About Hexlite Studios",
+    "mission": {
+      "title": "Our Mission",
+      "missionStatement": "At Hexlite, our mission is to create immersive and innovative experiences that captivate players worldwide."
+    },
+    "team": {
+      "title": "Our Team"
+    }
+  },
+  "team": {
+    "shadow": {
+      "name": "Shadow",
+      "role": "Founder & Lead Developer",
+      "bio": "The visionary behind Hexlite Studios, leading the team with a passion for creating immersive gaming experiences."
+    },
+    "chrisProductions": {
+      "name": "ChrisProductions",
+      "role": "Lead Composer",
+      "bio": "ChrisProductions composes the captivating soundtracks that bring our games to life."
+    }
+  },
+  "resources": {
+    "title": "Resources",
+    "description": "Welcome to the Resources page! Here you'll find a collection of useful materials, guides, and tools to help you get the most out of our humble offerings. Currently Pending Construction 🚧 Thank you for your patience!",
+    "visitLinkedIn": "Visit our LinkedIn",
+    "visitMusician": "Visit our Musician's Site"
+  },
+  "arcaneGuardians": {
+    "title": "Arcane Guardians",
+    "welcomeMessage": "Page is under construction! Hang tight!",
+    "description": "This game will be a tower-defense 3rd person action game with many unique features. More details coming soon!"
+  },
+  "wafront": {
+    "title": "Warfront",
+    "welcomeMessage": "Welcome to the Warfront game page, pending construction!",
+    "description": "Dive into the intense PvP action with squads filled with AI companions. More details coming soon!"
+  },
+  "lightOfTheLost": {
+    "title": "Light of the Lost",
+    "welcomeMessage": "Welcome to the Light of the Lost game page, pending construction!",
+    "description": "A narrative horror experience that will test your courage. Beware of the darkness... More details coming soon!"
+  },
+  "projectStatecraft": {
+    "title": "Project: Statecraft",
+    "welcomeMessage": "Welcome to the Project: Statecraft game page, pending construction!",
+    "description": "Create, govern, and thrive in a dynamic world where your decisions shape the future. More details coming soon!"
   }
 }

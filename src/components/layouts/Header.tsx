@@ -20,12 +20,12 @@ function Header() {
     ];
 
     return (
-        <header className="bg-zinc-950 text-gray-200 p-5 shadow-lg border-b border-zinc-800">
+        <header className="bg-zinc-950 text-gray-200 p-2 shadow-lg border-b border-zinc-800 h-20">
             <nav className="mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-13">
+                <div className="flex items-center justify-between">
                     <div>
                         <Link to="/" className="flex items-center gap-3">
-                            <img src={HexliteLogo} alt="Hexlite Studios Logo" className="h-10 w-10" />
+                            <img src={HexliteLogo} alt="Hexlite Studios Logo" className="h-16 w-16" />
                             <span className="font-bold text-2xl">{t('nav.branding')}</span>
                         </Link>
                     </div>

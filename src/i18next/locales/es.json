@@ -60,5 +60,53 @@
     "title2": "Warfront",
     "newsTitle2": "Revelación de Arte Conceptual",
     "description2": "Sumérgete en la intensa acción PvP basada en escuadrones de Warfront. ¡Comanda a tu equipo hacia la victoria!"
+  },
+  "about": {
+    "title": "Acerca de Hexlite Studios",
+    "mission": {
+      "title": "Nuestra Misión",
+      "missionStatement": "En Hexlite, nuestra misión es crear experiencias inmersivas e innovadoras que cautiven a jugadores de todo el mundo."
+    },
+    "team": {
+      "title": "Nuestro Equipo"
+    }
+  },
+  "team": {
+    "shadow": {
+      "name": "Shadow",
+      "role": "Fundador y Desarrollador Principal",
+      "bio": "El visionario detrás de Hexlite Studios, liderando el equipo con una pasión por crear experiencias de juego inmersivas."
+    },
+    "chrisProductions": {
+      "name": "ChrisProductions",
+      "role": "Compositor Principal",
+      "bio": "ChrisProductions compone las cautivadoras bandas sonoras que dan vida a nuestros juegos."
+    }
+  },
+  "resources": {
+    "title": "Recursos",
+    "description": "¡Bienvenido a la página de Recursos! Aquí encontrarás una colección de materiales útiles, guías y herramientas para ayudarte a aprovechar al máximo nuestras humildes ofertas. Actualmente en Construcción 🚧 ¡Gracias por tu paciencia!",
+    "visitLinkedIn": "Visita nuestro LinkedIn",
+    "visitMusician": "Visita el Canal de nuestro Músico"
+  },
+  "arcaneGuardians": {
+    "title": "Arcane Guardians",
+    "welcomeMessage": "¡La página está en construcción! ¡Espera!",
+    "description": "Este juego será un juego de acción en tercera persona de defensa de torres con muchas características únicas. ¡Más detalles próximamente!"
+  },
+  "wafront": {
+    "title": "Warfront",
+    "welcomeMessage": "¡Bienvenido a la página del juego Warfront, en construcción!",
+    "description": "Sumérgete en la intensa acción PvP con escuadrones llenos de compañeros de IA. ¡Más detalles próximamente!"
+  },
+  "lightOfTheLost": {
+    "title": "Light of the Lost",
+    "welcomeMessage": "¡Bienvenido a la página del juego Light of the Lost, en construcción!",
+    "description": "Una experiencia de horror narrativa que pondrá a prueba tu coraje. Cuidado con la oscuridad... ¡Más detalles próximamente!"
+  },
+  "projectStatecraft": {
+    "title": "Project: Statecraft",
+    "welcomeMessage": "¡Bienvenido a la página del juego Project: Statecraft, en construcción!",
+    "description": "Crea, gobierna y prospera en un mundo dinámico donde tus decisiones moldean el futuro. ¡Más detalles próximamente!"
   }
 }

@@ -33,7 +33,7 @@ export const games: Game[] = [
         image: agbanner,
         status: 'upcoming',
         links: {
-            page: '/games/arcaneguardians',
+            page: '/arcane-guardians',
         },
     },
     {
@@ -43,7 +43,7 @@ export const games: Game[] = [
         image: psbanner,
         status: 'in-development',
         links: {
-            page: '/games/projectstatecraft',
+            page: '/project-statecraft',
         },
     },
     {
@@ -53,7 +53,7 @@ export const games: Game[] = [
         image: warfrontbanner,
         status: 'upcoming',
         links: {
-            page: '/games/warfront',
+            page: '/warfront',
         },
     },
 ];

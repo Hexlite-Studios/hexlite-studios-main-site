@@ -60,5 +60,53 @@
     "title2": "ウォーフロント",
     "newsTitle2": "コンセプトアート公開",
     "description2": "ウォーフロントの激しい分隊ベースのPvPアクションに飛び込もう。チームを勝利に導け！" 
+  },
+  "about": {
+    "title": "Hexlite Studiosの紹介",
+    "mission": {
+      "title": "私たちの使命",
+      "missionStatement": "Hexliteでは、世界中のプレイヤーを魅了する没入型で革新的な体験を創造することを使命としています。"
+    },
+    "team": {
+      "title": "私たちのチーム"
+    }
+  },
+  "team": {
+    "shadow": {
+      "name": "Shadow",
+      "role": "創設者兼リード開発者",
+      "bio": "Hexlite Studiosのビジョナリーであり、没入型ゲーム体験の創造に情熱を注ぐチームを率いています。"
+    },
+    "chrisProductions": {
+      "name": "ChrisProductions",
+      "role": "リードコンポーザー",
+      "bio": "ChrisProductionsは、私たちのゲームに命を吹き込む魅力的なサウンドトラックを作曲しています。"
+    }
+  },
+  "resources": {
+    "title": "リソース",
+    "description": "リソースページへようこそ！ここでは、役立つ資料、ガイド、ツールのコレクションを見つけることができます。現在建設中です 🚧 ご理解いただきありがとうございます！",
+    "visitLinkedIn": "私たちのLinkedInを訪問",
+    "visitMusician": "私たちのミュージシャンのチャンネルを訪問"
+  },
+  "arcaneGuardians": {
+    "title": "Arcane Guardians",
+    "welcomeMessage": "ページは建設中です！しばらくお待ちください！",
+    "description": "このゲームは、多くのユニークな特徴を持つタワーディフェンスの3人称アクションゲームになります。詳細は近日公開予定です！"
+  },
+  "wafront": {
+    "title": "Warfront",
+    "welcomeMessage": "Warfrontゲームページへようこそ。現在建設中です！",
+    "description": "激しいAIコンパニオンを含む分隊でのPvPアクションに飛び込もう。詳細は近日公開予定です！"
+  },
+  "lightOfTheLost": {
+    "title": "失われた者の光",
+    "welcomeMessage": "失われた者の光ゲームページへようこそ。現在建設中です！",
+    "description": "物語的ホラー体験であなたの勇気を試します。闇に注意... 詳細は近日公開予定です！"
+  },
+  "projectStatecraft": {
+    "title": "Project: Statecraft",
+    "welcomeMessage": "Project: Statecraftゲームページへようこそ。現在建設中です！",
+    "description": "動的な世界で創造し、統治し、繁栄しましょう。あなたの決定が未来を形作ります。詳細は近日公開予定です！"
   }
 }

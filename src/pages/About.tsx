@@ -1,8 +1,43 @@
+import { useTranslation } from 'react-i18next';
+import { teamMembers } from '../data/theteam';
+
 function About() {
+    const { t } = useTranslation();
+
     return (
-        <div>
-            <h1>About Hexlite Studios</h1>
-            <p>Welcome to Hexlite Studios! We are passionate about creating immersive gaming experiences.</p>
+        <div className="min-h-screen">
+            <div className="px-4 py-16 max-w-3xl mx-auto text-center">
+                <h1 className="text-4xl font-bold mb-10">
+                    {t('about.title')}
+                </h1>
+
+                <section className="mb-8 p-8">
+                    <h2 className="text-2xl font-bold mb-4">
+                        {t('about.mission.title')}
+                    </h2>
+                    <p className="text-white">
+                        {t('about.mission.missionStatement')}
+                    </p>
+                </section>
+
+                <section className="mb-8 p-8">
+                    <h2 className="text-2xl font-bold mb-4">
+                        {t('about.team.title')}
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {teamMembers.map((member) => (
+                            <div key={member.id} className="mb-4 bg-zinc-800 rounded-xl hover:scale-105 transition-all duration-300">
+                                <img className="w-24 h-24 rounded-full mx-auto mb-2 cover" src={member.icon} alt={t(member.name)} />
+                                <h3 className="text-xl font-bold">{t(member.name)}</h3>
+                                <p className="mt-2 font-semibold">{t(member.role)}</p>
+                                <p className="mt-3 border-t-2 border-zinc-700 pt-2">{t(member.bio)}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+
+            </div>
         </div>
     );
 }

@@ -26,7 +26,7 @@ export const featuredItems: FeaturedItem[] = [
     subtitle: 'featuredHero.newsTitle2',
     description: 'featuredHero.description2',
     image: warfrontbanner,
-    link: '/news/warfront-concept-art',
+    link: '/warfront',
     type: 'news',
   }
 ];

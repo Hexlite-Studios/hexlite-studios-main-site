@@ -22,7 +22,7 @@ function GameCard ({ game, isOpen, onToggle }: GameCardProps) {
             <img
                 src={game.image}
                 alt={t(game.titleKey)}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-full object-cover object-center cover transition-transform duration-300 group-hover:scale-105"
             />
 
             {!isOpen && (
