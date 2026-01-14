@@ -5,7 +5,7 @@ export { default as lotlbanner } from './lotlbanner.png';
 export { default as psbanner } from './psbanner.jpg';
 export { default as agbanner } from './agbanner.jpg';
 export { default as notfoundlogo } from './notfoundlogo.jpg';
-export { default as chrisProductions } from './chrisproductions.jpg';
+export { default as chrisProductions } from './ChrisProductions.jpg';
 export { default as kirimav1} from './KirimaV1.png';
 export { default as constructionbg} from './constructionbg.png';
 export { default as lotlCatladyQuest } from './LotlCatLadyQuest.png';
