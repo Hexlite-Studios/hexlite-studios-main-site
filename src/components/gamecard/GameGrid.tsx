@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import type { Game } from '../../data/games';
 import GameCard from './GameCard';
-import type { Game } from "../../data/games";
+
 
 interface GameGridProps {
     games: Game[];
+    openCardId: string | null;
+    setOpenCardId: (id: string | null) => void;
 }
 
-function GameGrid({ games }: GameGridProps) {
-    const [openCardId, setOpenCardId] = useState<string | null>(null);
+function GameGrid({ games, openCardId, setOpenCardId }: GameGridProps) {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
             {games.map((game) => (

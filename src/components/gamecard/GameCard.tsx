@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import type { Game } from '../../data/games';
 import { useTranslation } from 'react-i18next';
+import type { Game } from '../../data/games';
+
 
 interface GameCardProps {
     game: Game;
@@ -20,8 +21,8 @@ function GameCard ({ game, isOpen, onToggle }: GameCardProps) {
     return (
         <div className="relative group h-96 rounded-xl overflow-hidden shadow-lg">
             <img
-                src={game.image}
-                alt={t(game.titleKey)}
+                src={game.image_url}
+                alt={t(game.title_key)}
                 className="w-full h-full object-cover object-center cover transition-transform duration-300 group-hover:scale-105"
             />
 
@@ -66,17 +67,17 @@ function GameCard ({ game, isOpen, onToggle }: GameCardProps) {
                     <div className="space-y-4">
                         <div>
                             <h3 className="text-2xl font-bold mb-1">
-                                {t(game.titleKey)}
+                                {t(game.title_key)}
                             </h3>
                             <p className="text-sm italic">
-                                {t(game.taglineKey)}
+                                {t(game.tagline_key)}
                             </p>
                         </div>
 
                         <div className="flex gap-3">
-                            {game.links.page && (
+                            {game.page_url && (
                                 <Link
-                                    to={game.links.page}
+                                    to={game.page_url}
                                     className="flex-1 bg-slate-700 hover:bg-slate-800 font-semibold py-3 px-4 rounded-lg transition text-center"
                                     onClick={(e) => e.stopPropagation()}
                                 >
@@ -84,9 +85,9 @@ function GameCard ({ game, isOpen, onToggle }: GameCardProps) {
                                 </Link>
                             )}
 
-                            {game.links.play && (
+                            {game.play_url && (
                                 <a
-                                    href={game.links.play}
+                                    href={game.play_url}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex-1 bg-sky-500 hover:bg-sky-800 text-white font-semibold py-3 px-4 rounded-lg transition text-center"
