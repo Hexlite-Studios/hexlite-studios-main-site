@@ -1,33 +1,37 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { supabase } from '../lib/supabase';
 import GameGrid from "../components/gamecard/GameGrid";
 import FeaturedHero from "../components/home/FeaturedHero";
-import { featuredItems } from '../data/featureditems';
+import { featuredService } from '../services/featuredService';
+import { gameService } from '../services/gameService';
+import type { FeaturedItem } from '../data/featureditems';
 import type { Game } from '../data/games';
 
 function Home() {
   const { t } = useTranslation();
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
+  const [featuredItems, setFeaturedItems] = useState<FeaturedItem[]>([]);
   const [openCardId, setOpenCardId] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchGames = async () => {
-      const { data, error } = await supabase
-        .from('games')
-        .select('*')
-        .order('display_order', { ascending: true });
-
-        if (error) {
-          console.error('Error fetching games:', error);
-        } else {
-          console.log('Games fetched:', data);
-          setGames(data);
-        }
+    const loadData = async () => {
+      try {
+        const [gamesData, featuredData] = await Promise.all([
+          gameService.getAll(),
+          featuredService.getAll(),
+        ]);
+        
+        setGames(gamesData);
+        setFeaturedItems(featuredData);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
         setLoading(false);
-      };
-    fetchGames();
+      }
+    };
+    
+    loadData();
   }, []);
 
   if (loading) { 
