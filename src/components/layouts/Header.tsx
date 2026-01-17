@@ -138,6 +138,17 @@ function Header() {
                             </>
                         )}
                     </div>
+                    {/* Mobile Edition Placeholder */}
+                    <div className="md:hidden">
+                        <div> 
+                            <Link
+                                to="/sign-in"
+                                className="text-lg hover:text-white transition-colors duration-150"
+                            >
+                                {t('nav.signIn')}
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>
