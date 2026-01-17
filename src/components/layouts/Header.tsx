@@ -10,6 +10,7 @@ interface NavLink {
 }
 
 function Header() {
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
@@ -138,18 +139,94 @@ function Header() {
                             </>
                         )}
                     </div>
-                    {/* Mobile Edition Placeholder */}
+                    {/* Mobile Edition */}
                     <div className="md:hidden">
-                        <div> 
-                            <Link
-                                to="/sign-in"
-                                className="text-lg hover:text-white transition-colors duration-150"
+                        <button
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            className="hover:text-white transition-colors"
+                            aria-label="Toggle mobile menu"
+                        >   
+                            <svg 
+                                className="h-6 w-6"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
                             >
-                                {t('nav.signIn')}
-                            </Link>
-                        </div>
+                                {mobileMenuOpen ? (
+                                    <path d="M6 18L18 6M6 6l12 12" />
+                                ) : (
+                                    <path d="M4 6h16M4 12h16M4 18h16" />
+                                )}
+                            </svg>
+                        </button>
                     </div>
                 </div>
+                    <div className="md:hidden">
+                        {mobileMenuOpen && (
+                            <div className="py-4 mt-3">
+                                <div className="flex flex-col gap-4">
+                                    {!loading && (
+                                        <>
+                                            <div className="border-t border-zinc-700 my-2" />
+                                            {user ? (
+                                                <>
+                                                    <div className="flex items-center gap-3 px-4">
+                                                        <img
+                                                            src={DefaultConcept}
+                                                            alt="User Avatar"
+                                                            className="h-12 w-12 rounded-full bg-gray-600 mb-1"
+                                                        />
+                                                        <div>
+                                                            <p className="font-semibold text-xl">{getUserDisplayName()}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="border-t border-zinc-700" />
+                                                    <button
+                                                        onClick={handleSignOut}
+                                                        className="text-left text-gray-300 hover:text-white hover:bg-zinc-800 transition-all duration-200 font-medium px-4 py-2 rounded-lg"
+                                                        >
+                                                        {t('nav.signOut')}
+                                                    </button>
+                                                    <div className="border-t border-zinc-700" />
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Link
+                                                        to="/sign-in"
+                                                        onClick={() => setMobileMenuOpen(false)}
+                                                        className="text-left text-gray-300 hover:text-white hover:bg-zinc-800 transition-all duration-200 font-medium px-4 py-2 rounded-lg"
+                                                    >
+                                                        {t('nav.signIn')}
+                                                    </Link>
+                                                    <div className="border-t border-zinc-700" />
+                                                </>
+                                            )}
+                                        </>
+                                    )}
+                                    {navLinks.map((link) => {
+                                        const isActive = location.pathname === link.path;
+                                        return (
+                                            <Link
+                                                key={link.path}
+                                                to={link.path}
+                                                onClick={() => setMobileMenuOpen(false)}
+                                                className={`
+                                                    text-gray-300 hover:text-white hover:bg-zinc-800 transition-all duration-200
+                                                font-medium px-4 py-2 rounded-lg
+                                                ${isActive ? 'text-white bg-zinc-800' : ''}
+                                            `}
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
+                    </div>
             </nav>
         </header>
     );
