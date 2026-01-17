@@ -304,7 +304,7 @@ function SignIn() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full py-3 bg-yellow-600 text-white font-semibold rounded-lg hover:bg-yellow-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                             >
                                 {loading ? t('signIn.sendingEmail') : t('signIn.resetPasswordButton')}
                             </button>

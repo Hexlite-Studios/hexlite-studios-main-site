@@ -186,7 +186,7 @@ function Header() {
                                                     <div className="border-t border-zinc-700" />
                                                     <button
                                                         onClick={handleSignOut}
-                                                        className="text-left text-gray-300 hover:text-white hover:bg-zinc-800 transition-all duration-200 font-medium px-4 py-2 rounded-lg"
+                                                        className="text-left text-red-400 hover:text-white hover:bg-zinc-800 transition-all duration-200 font-medium px-4 py-2 rounded-lg"
                                                         >
                                                         {t('nav.signOut')}
                                                     </button>
