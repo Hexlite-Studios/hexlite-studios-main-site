@@ -10,7 +10,6 @@ import type { Game } from '../data/games';
 function Home() {
   const { t } = useTranslation();
   const [games, setGames] = useState<Game[]>([]);
-  const [loading, setLoading] = useState(true);
   const [featuredItems, setFeaturedItems] = useState<FeaturedItem[]>([]);
   const [openCardId, setOpenCardId] = useState<string | null>(null);
 
@@ -26,21 +25,12 @@ function Home() {
         setFeaturedItems(featuredData);
       } catch (error) {
         console.error('Error loading data:', error);
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
     
     loadData();
   }, []);
 
-  if (loading) { 
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Loading...</p>
-      </div>
-    )
-  }
 
   return (
     <div className="min-h-screen">
@@ -50,11 +40,19 @@ function Home() {
       <div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h2 className="text-3xl font-bold pb-4">{t('home.ourGames')}</h2>
-          <GameGrid 
-            games={games} 
-            openCardId={openCardId}
-            setOpenCardId={setOpenCardId}
+          {games.length > 0 ? (
+            <GameGrid 
+              games={games} 
+              openCardId={openCardId}
+              setOpenCardId={setOpenCardId}
             />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="h-96 bg-zinc-900 rounded-xl animate-pulse" />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

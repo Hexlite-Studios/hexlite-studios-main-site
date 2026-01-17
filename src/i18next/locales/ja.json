@@ -6,7 +6,32 @@
     "about": "約",
     "resources": "リソース",
     "signIn": "サインイン",
-    "profile": "プロフィール"
+    "profile": "プロフィール",
+    "return": "戻る",
+    "greeting": "こんにちは",
+    "signOut": "サインアウト"
+  },
+  "signIn": {
+    "usernameLabel": "ユーザー名:",
+    "emailLabel": "メールアドレス:",
+    "passwordLabel": "パスワード:",
+    "signInButton": "サインイン",
+    "signUpButton": "サインアップ",
+    "resetPasswordButton": "パスワードリセット",
+    "passwordRequirements": "6文字以上",
+    "forgotPasswordInstructions": "パスワードリセットの指示を受け取るためにメールアドレスを入力してください。",
+    "signUpLink": "今すぐサインアップ！",
+    "notAUser": "ユーザーではありませんか？",
+    "forgotPasswordLink": "パスワードをお忘れですか？",
+    "alreadyAUser": "すでにユーザーですか？",
+    "backToSignIn": "サインインに戻る",
+    "googleSignIn": "Googleで続行（近日公開）",
+    "backToHome": "ホームに戻る",
+    "welcomeBackPrompt": "Hexlite スタジオのアカウントにサインインしてください",
+    "createAccountPrompt": "Hexlite スタジオのコミュニティに参加しましょう",
+    "resetPasswordPrompt": "パスワードリセットのリンクをお送りします",
+    "loading": "読み込み中...",
+    "creatingAccount": "アカウント作成中..."
   },
   "home": {
     "welcome": "Hexlite スタジオへようこそ",

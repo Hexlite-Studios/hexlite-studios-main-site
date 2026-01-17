@@ -8,6 +8,8 @@ import NotFound from './pages/NotFound';
 import LightofTheLost from './pages/LightofTheLost';
 import ArcaneGuardians from './pages/ArcaneGuardians';
 import Warfront from './pages/Warfront';
+import SignIn from './pages/SignIn';
+import Profile from './pages/Profile';
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="/light-of-the-lost" element={<LightofTheLost />} />
           <Route path="/arcane-guardians" element={<ArcaneGuardians />} />
           <Route path="/warfront" element={<Warfront />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
     </>

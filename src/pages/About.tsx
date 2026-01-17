@@ -6,7 +6,6 @@ import { teamService } from '../services/teamService.ts';
 function About() {
     const { t } = useTranslation();
     const [teamMembers, setTeamMembers] = useState<teamMember[]>([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchTeam = async () => {
@@ -15,18 +14,10 @@ function About() {
                 setTeamMembers(data);
             } catch (error) {
                 console.error('Error fetching team members:', error);
-            } finally {
-                setLoading(false);
             }
         };
         fetchTeam();
     }, []);
-
-    if (loading) { 
-        return <div className="min-h-screen flex items-center justify-center">
-            <p className="text-white text-xl">Loading...</p>
-        </div>; 
-    }
 
     return (
         <div className="min-h-screen">
@@ -48,26 +39,32 @@ function About() {
                     <h2 className="text-2xl font-bold mb-4">
                         {t('about.team.title')}
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {teamMembers.map((member) => (
-                            <div 
-                                key={member.id} 
-                                className="mb-4 bg-zinc-800 rounded-xl hover:scale-105 transition-all duration-300 p-5 ring-2 ring-zinc-700/75 hover:ring-zinc-500/90 hover:text-white"
-                            >
-                                <img className="w-24 h-24 rounded-full mx-auto mb-2 cover" 
-                                    src={member.icon} 
-                                    alt={t(member.name)} 
-                                />
-                                <h3 className="text-xl font-bold">{t(member.name)}</h3>
-                                <p className="mt-2 font-semibold">{t(member.role)}</p>
-                                <p className="mt-3 border-t-2 border-zinc-700 pt-2">{t(member.bio)}</p>
-                            </div>
-                        ))}
-                    </div>
+                    {teamMembers.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {teamMembers.map((member) => (
+                                <div 
+                                    key={member.id} 
+                                    className="mb-4 bg-zinc-800 rounded-xl hover:scale-105 transition-all duration-300 p-5 ring-2 ring-zinc-700/75 hover:ring-zinc-500/90 hover:text-white"
+                                >
+                                    <img className="w-24 h-24 rounded-full mx-auto mb-2 cover" 
+                                        src={member.icon} 
+                                        alt={t(member.name)} 
+                                    />
+                                    <h3 className="text-xl font-bold">{t(member.name)}</h3>
+                                    <p className="mt-2 font-semibold">{t(member.role)}</p>
+                                    <p className="mt-3 border-t-2 border-zinc-700 pt-2">{t(member.bio)}</p>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {[1, 2].map((i) => (
+                                <div key={i} className="h-64 mb-4 bg-zinc-800 rounded-xl animate-pulse p-5 ring-2 ring-zinc-700/75"/>
+                            ))}
+                        </div>
+                    )}
                 </section>
-
-
-            </div>
+            </div>  
         </div>
     );
 }

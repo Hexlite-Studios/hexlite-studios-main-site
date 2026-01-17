@@ -6,13 +6,33 @@
     "about": "Acerca de",
     "resources": "Recursos",
     "signIn": "Iniciar sesión",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "return": "Regresar",
+    "greeting": "Hola",
+    "signOut": "Cerrar sesión"
   },
-  "home": {
-    "welcome": "Bienvenido a Hexlite Studios",
-    "tagline": "Tu puerta a soluciones digitales innovadoras",
-    "goTo404": "Ve a una página inexistente para ver el 404",
-    "ourGames": "Todos los Juegos"
+  "signIn": {
+    "usernameLabel": "Nombre de usuario:",
+    "emailLabel": "Correo electrónico:",
+    "passwordLabel": "Contraseña:",
+    "signInButton": "Iniciar sesión",
+    "signUpButton": "Registrarse",
+    "resetPasswordButton": "Restablecer contraseña",
+    "passwordRequirements": "Al menos 6 caracteres",
+    "forgotPasswordInstructions": "Ingrese su correo electrónico para recibir instrucciones de restablecimiento de contraseña.",
+    "signUpLink": "¡Regístrate hoy!",
+    "notAUser": "¿No eres usuario?",
+    "forgotPasswordLink": "¿Olvidaste tu contraseña?",
+    "alreadyAUser": "¿Ya eres usuario?",
+    "backToSignIn": "Volver a Iniciar sesión",
+    "googleSignIn": "Continuar con Google (Próximamente)",
+    "backToHome": "Volver al Inicio",
+    "createAccountPrompt": "Únete a la comunidad de Hexlite Studios",
+    "welcomeBackPrompt": "Inicia sesión en tu cuenta de Hexlite Studios",
+    "resetPasswordPrompt": "Te enviaremos un enlace para restablecer tu contraseña",
+    "loading": "Cargando...",
+    "creatingAccount": "Creando cuenta..."
+
   },
   "footer": {
     "copyright": "© 2026 Hexlite Studios. Todos los derechos reservados.",

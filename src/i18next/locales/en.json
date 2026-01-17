@@ -7,7 +7,32 @@
     "resources": "Resources",
     "signIn": "Sign In",
     "profile": "Profile",
-    "return": "Return"
+    "return": "Return",
+    "greeting": "Hello",
+    "signOut": "Sign Out"
+  },
+  "signIn": {
+    "usernameLabel": "Username:",
+    "emailLabel": "Email:",
+    "passwordLabel": "Password:",
+    "signInButton": "Sign In",
+    "signUpButton": "Sign Up",
+    "resetPasswordButton": "Reset Password",
+    "passwordRequirements": "At least 6 characters",
+    "forgotPasswordInstructions": "Enter your email to receive password reset instructions.",
+    "signUpLink": "Sign up today!",
+    "notAUser": "Not a user?",
+    "forgotPasswordLink": "Forgot your password?",
+    "alreadyAUser": "Already a user?",
+    "backToSignIn": "Back to Sign In",
+    "googleSignIn": "Continue with Google (Coming Soon)",
+    "backToHome": "Back to Home",
+    "createAccountPrompt": "Join the Hexlite Studios community",
+    "welcomeBackPrompt": "Sign in to your Hexlite Studios account",
+    "resetPasswordPrompt": "We'll send you a reset link",
+    "loading": "Loading...",
+    "creatingAccount": "Creating account..."
+
   },
   "home": {
     "welcome": "Welcome to Hexlite Studios",
