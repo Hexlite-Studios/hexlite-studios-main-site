@@ -2,20 +2,26 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { HexliteLogo, DefaultConcept } from "../../assets/Assets";
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../../contexts/AuthContext';
+import { supabase } from '../../lib/supabase';
 
 interface NavLink {
     label: string;
     path: string;
 }
 
+interface UserProfile {
+    avatar_url: string | null;
+    username: string;
+}
+
 function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
+    const [user, setUser] = useState<UserProfile | null>(null);
+    const [loading, setLoading] = useState(true);
     const location = useLocation();
     const { t } = useTranslation();
-    const { user, signOut, loading } = useAuth();
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     const navLinks: NavLink[] = [
         { label: t('nav.games'), path: '/' },
@@ -24,29 +30,57 @@ function Header() {
     ];
 
     useEffect(() => {
+        const checkUser = async () => {
+            const { data: { user: authUser } } = await supabase.auth.getUser();
+            
+            if (authUser) {
+                // Fetch user profile data from users table
+                const { data: profile } = await supabase
+                    .from('users')
+                    .select('avatar_url, username')
+                    .eq('id', authUser.id)
+                    .single();
+                
+                if (profile) {
+                    setUser(profile);
+                }
+            } else {
+                setUser(null);
+            }
+            setLoading(false);
+        };
+
+        checkUser();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
+            checkUser();
+        });
+
+        return () => {
+            subscription.unsubscribe();
+        };
+    }, []);
+    
+    useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
                 setShowUserMenu(false);
             }
         };
 
-        if (showUserMenu) {
-            document.addEventListener('mousedown', handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [showUserMenu]);
-
-    const handleSignOut = async () => {
-        await signOut();
-        setShowUserMenu(false);
-    };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     const getUserDisplayName = () => {
-        if (!user) return '';
-        return user.user_metadata?.name || user.email?.split('@')[0] || 'User';
+        return user?.username || 'User';
+    };
+
+    const handleSignOut = async () => {
+        await supabase.auth.signOut();
+        setUser(null);
+        setShowUserMenu(false);
+        setMobileMenuOpen(false);
     };
 
     return (
@@ -67,7 +101,6 @@ function Header() {
                     <div className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => {
                             const isActive = location.pathname === link.path;
-
                             return (
                                 <Link
                                     key={link.path}
@@ -98,15 +131,15 @@ function Header() {
                                                 {t('nav.greeting')}, {getUserDisplayName()}
                                             </span>
                                             <img
-                                                src={DefaultConcept}
+                                                src={user.avatar_url || DefaultConcept}
                                                 alt="User Avatar"
-                                                className="h-10 w-10 rounded-full bg-gray-600 hover:ring-2 ring-gray-400 transition-all"
+                                                className="h-10 w-10 rounded-full bg-gray-600 hover:ring-2 ring-gray-400 transition-all object-cover"
                                             />
                                         </button>
                                         {showUserMenu && (
                                             <div className="absolute right-0 mt-2 w-48 bg-zinc-800 rounded-lg shadow-lg py-2 z-50 border border-zinc-700">
                                                 <Link
-                                                    to="/profile"
+                                                    to={`/u/${getUserDisplayName()}`}
                                                     onClick={() => setShowUserMenu(false)}
                                                     className="block px-4 py-2 hover:bg-zinc-700 transition-colors"
                                                 >
@@ -164,69 +197,69 @@ function Header() {
                         </button>
                     </div>
                 </div>
-                    <div className="md:hidden">
-                        {mobileMenuOpen && (
-                            <div className="py-4 mt-3">
-                                <div className="flex flex-col gap-4">
-                                    {!loading && (
-                                        <>
-                                            <div className="border-t border-zinc-700 my-2" />
-                                            {user ? (
-                                                <>
-                                                    <div className="flex items-center gap-3 px-4">
-                                                        <img
-                                                            src={DefaultConcept}
-                                                            alt="User Avatar"
-                                                            className="h-12 w-12 rounded-full bg-gray-600 mb-1"
-                                                        />
-                                                        <div>
-                                                            <p className="font-semibold text-xl">{getUserDisplayName()}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="border-t border-zinc-700" />
-                                                    <button
-                                                        onClick={handleSignOut}
-                                                        className="text-left text-red-400 hover:text-white hover:bg-zinc-800 transition-all duration-200 font-medium px-4 py-2 rounded-lg"
-                                                        >
-                                                        {t('nav.signOut')}
-                                                    </button>
-                                                    <div className="border-t border-zinc-700" />
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Link
-                                                        to="/sign-in"
-                                                        onClick={() => setMobileMenuOpen(false)}
-                                                        className="text-left text-gray-300 hover:text-white hover:bg-zinc-800 transition-all duration-200 font-medium px-4 py-2 rounded-lg"
-                                                    >
-                                                        {t('nav.signIn')}
-                                                    </Link>
-                                                    <div className="border-t border-zinc-700" />
-                                                </>
-                                            )}
-                                        </>
-                                    )}
-                                    {navLinks.map((link) => {
-                                        const isActive = location.pathname === link.path;
-                                        return (
-                                            <Link
-                                                key={link.path}
-                                                to={link.path}
-                                                onClick={() => setMobileMenuOpen(false)}
-                                                className={`
-                                                    text-gray-300 hover:text-white hover:bg-zinc-800 transition-all duration-200
+
+                {/* Mobile Menu */}
+                <div className="md:hidden">
+                    {mobileMenuOpen && (
+                        <div className="py-4 mt-3">
+                            <div className="flex flex-col gap-4">
+                                {!loading && user && (
+                                    <>
+                                        <div className="flex items-center gap-3 px-4">
+                                            <img
+                                                src={user.avatar_url || DefaultConcept}
+                                                alt="User Avatar"
+                                                className="h-12 w-12 rounded-full bg-gray-600 mb-1 object-cover"
+                                            />
+                                            <div>
+                                                <p className="font-semibold text-xl">{getUserDisplayName()}</p>
+                                            </div>
+                                        </div>
+                                        <div className="border-t border-zinc-700" />
+                                    </>
+                                )}
+                                {navLinks.map((link) => {
+                                    const isActive = location.pathname === link.path;
+                                    return (
+                                        <Link
+                                            key={link.path}
+                                            to={link.path}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className={`
+                                                text-gray-300 hover:text-white hover:bg-zinc-800 transition-all duration-200
                                                 font-medium px-4 py-2 rounded-lg
                                                 ${isActive ? 'text-white bg-zinc-800' : ''}
                                             `}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    );
+                                })}
+                                {!loading && (
+                                    <>
+                                        <div className="border-t border-zinc-700 my-2" />
+                                        {user ? (
+                                            <button
+                                                onClick={handleSignOut}
+                                                className="text-left text-red-400 hover:text-white hover:bg-zinc-800 transition-all duration-200 font-medium px-4 py-2 rounded-lg"
                                             >
-                                                {link.label}
+                                                {t('nav.signOut')}
+                                            </button>
+                                        ) : (
+                                            <Link
+                                                to="/sign-in"
+                                                onClick={() => setMobileMenuOpen(false)}
+                                                className="text-left text-gray-300 hover:text-white hover:bg-zinc-800 transition-all duration-200 font-medium px-4 py-2 rounded-lg"
+                                            >
+                                                {t('nav.signIn')}
                                             </Link>
-                                        );
-                                    })}
-                                </div>
+                                        )}
+                                    </>
+                                )}
                             </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
+                </div>
             </nav>
         </header>
     );

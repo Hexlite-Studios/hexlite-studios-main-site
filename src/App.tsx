@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import HexliteLayout from './components/layouts/HexliteLayout';
 import GameLayout from './components/layouts/GameLayout';
+import ProfileLayout from './components/layouts/ProfileLayout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Resources from './pages/Resources';
@@ -27,7 +28,9 @@ function App() {
           <Route path="/arcane-guardians" element={<ArcaneGuardians />} />
           <Route path="/warfront" element={<Warfront />} />
           <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/profile" element={<Profile />} />
+        </Route>
+        <Route element={<ProfileLayout />}>
+          <Route path="/u/:username" element={<Profile />} />
         </Route>
       </Routes>
     </>

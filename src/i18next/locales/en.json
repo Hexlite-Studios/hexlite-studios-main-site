@@ -134,5 +134,13 @@
     "title": "Project: Statecraft",
     "welcomeMessage": "Welcome to the Project: Statecraft game page, pending construction!",
     "description": "Create, govern, and thrive in a dynamic world where your decisions shape the future. More details coming soon!"
+  },
+  "profile": {
+    "badges": "Badges",
+    "noBadges": "No badges :(",
+    "about": "About",
+    "userSince": "User Since:",
+    "noBio": "Very awesome user with no bio provided."
+
   }
 }

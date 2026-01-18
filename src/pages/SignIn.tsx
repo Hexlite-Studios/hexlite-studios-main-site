@@ -19,11 +19,24 @@ function SignIn() {
     const { t } = useTranslation();
 
     useEffect(() => {
-        if (user) {
-            navigate('/profile');
-        }
-    }, [user, navigate]);
-
+        const checkUserAndRedirect = async () => {
+            if (user) {
+                const { data: profile } = await supabase
+                    .from('users')
+                 .select('username')
+                   .eq('id', user.id)
+                    .single();
+            
+             if (profile?.username) {
+                  navigate(`/u/${profile.username}`);
+                } else {
+                    navigate('/');
+                }
+            }
+     };
+    
+    checkUserAndRedirect();
+}, [user, navigate]);
     const resetForm = () => {
         setEmail('');
         setPassword('');

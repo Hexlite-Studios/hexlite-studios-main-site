@@ -133,5 +133,12 @@
     "title": "Project: Statecraft",
     "welcomeMessage": "Project: Statecraftゲームページへようこそ。現在建設中です！",
     "description": "動的な世界で創造し、統治し、繁栄しましょう。あなたの決定が未来を形作ります。詳細は近日公開予定です！"
+  },
+  "profile": {
+    "badges": "バッジ",
+    "noBadges": "バッジなし :(",
+    "about": "概要",
+    "userSince": "ユーザー登録日:",
+    "noBio": "素晴らしいユーザーですが、自己紹介はありません。"
   }
 }
