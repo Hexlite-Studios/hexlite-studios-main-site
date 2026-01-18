@@ -128,5 +128,12 @@
     "title": "Project: Statecraft",
     "welcomeMessage": "¡Bienvenido a la página del juego Project: Statecraft, en construcción!",
     "description": "Crea, gobierna y prospera en un mundo dinámico donde tus decisiones moldean el futuro. ¡Más detalles próximamente!"
+  },
+  "profile": {
+    "badges": "Insignias",
+    "noBadges": "No hay insignias :(",
+    "about": "Acerca de",
+    "userSince": "Usuario desde:",
+    "noBio": "Usuario muy genial sin biografía proporcionada."
   }
 }
