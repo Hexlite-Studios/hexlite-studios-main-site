@@ -6,7 +6,7 @@ export const userService = {
     const { data, error } = await supabase
       .from('users')
       .select('*')
-      .eq('username', username)
+      .ilike('username', username)
       .single();
     
     if (error) {

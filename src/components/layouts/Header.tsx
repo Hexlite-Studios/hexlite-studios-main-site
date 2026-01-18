@@ -34,7 +34,6 @@ function Header() {
             const { data: { user: authUser } } = await supabase.auth.getUser();
             
             if (authUser) {
-                // Fetch user profile data from users table
                 const { data: profile } = await supabase
                     .from('users')
                     .select('avatar_url, username')
@@ -205,7 +204,11 @@ function Header() {
                             <div className="flex flex-col gap-4">
                                 {!loading && user && (
                                     <>
-                                        <div className="flex items-center gap-3 px-4">
+                                        <Link
+                                            to={`/u/${getUserDisplayName()}`}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="flex items-center gap-3 px-4"
+                                        >
                                             <img
                                                 src={user.avatar_url || DefaultConcept}
                                                 alt="User Avatar"
@@ -214,7 +217,7 @@ function Header() {
                                             <div>
                                                 <p className="font-semibold text-xl">{getUserDisplayName()}</p>
                                             </div>
-                                        </div>
+                                        </Link>
                                         <div className="border-t border-zinc-700" />
                                     </>
                                 )}
