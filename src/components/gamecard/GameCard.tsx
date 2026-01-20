@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import type { Game } from '../../data/games';
 
 
@@ -9,7 +9,7 @@ interface GameCardProps {
     onToggle: () => void;
 }
 
-function GameCard ({ game, isOpen, onToggle }: GameCardProps) {
+export default function GameCard ({ game, isOpen, onToggle }: GameCardProps) {
     const { t } = useTranslation();
 
     const statusColors = {
@@ -102,8 +102,5 @@ function GameCard ({ game, isOpen, onToggle }: GameCardProps) {
             )}
         </div>
     );
-
 }
-
-export default GameCard;
 

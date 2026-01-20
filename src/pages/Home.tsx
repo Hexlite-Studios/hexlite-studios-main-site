@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import GameGrid from "../components/gamecard/GameGrid";
-import FeaturedHero from "../components/home/FeaturedHero";
+import { useState, useEffect } from 'react';
 import { featuredService } from '../services/featuredService';
 import { gameService } from '../services/gameService';
 import type { FeaturedItem } from '../data/featureditems';
 import type { Game } from '../data/games';
+import GameGrid from "../components/gamecard/GameGrid";
+import FeaturedHero from "../components/home/FeaturedHero";
+import LoadingSpinner from '../components/LoadingSpinner';
 
-function Home() {
+export default function Home() {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(true)
+  
   const [games, setGames] = useState<Game[]>([]);
   const [featuredItems, setFeaturedItems] = useState<FeaturedItem[]>([]);
   const [openCardId, setOpenCardId] = useState<string | null>(null);
@@ -25,39 +28,31 @@ function Home() {
         setFeaturedItems(featuredData);
       } catch (error) {
         console.error('Error loading data:', error);
-      } 
+      } finally {
+        setLoading(false);
+      }
     };
-    
+
     loadData();
   }, []);
 
+  if (loading) {
+        return <LoadingSpinner />;
+  }
 
   return (
     <div className="min-h-screen">
-
       <FeaturedHero items={featuredItems} />
-
       <div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h2 className="text-3xl font-bold pb-4">{t('home.ourGames')}</h2>
-          {games.length > 0 ? (
-            <GameGrid 
-              games={games} 
-              openCardId={openCardId}
-              setOpenCardId={setOpenCardId}
-            />
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-96 bg-zinc-900 rounded-xl animate-pulse" />
-              ))}
-            </div>
-          )}
+          <GameGrid 
+            games={games} 
+            openCardId={openCardId}
+            setOpenCardId={setOpenCardId}
+          />
         </div>
       </div>
-
     </div>
   );
 }
-
-export default Home;

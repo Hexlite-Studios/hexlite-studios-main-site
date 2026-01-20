@@ -1,7 +1,23 @@
 import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
+import LoadingSpinner from '../components/LoadingSpinner';
 
-function Resources() {
+export default function Resources() {
     const { t } = useTranslation();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 300);
+
+        return () => clearTimeout(timer);
+    })
+
+    if (loading) {
+        return <LoadingSpinner />;
+    }
+
     return (
         <div className="min-h-screen p-6 items-center text-center">
             <h1 className="text-4xl font-bold pt-10">{t('resources.title')}</h1>
@@ -29,4 +45,3 @@ function Resources() {
         </div>
     );
 }
-export default Resources;

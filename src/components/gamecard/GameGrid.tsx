@@ -8,7 +8,7 @@ interface GameGridProps {
     setOpenCardId: (id: string | null) => void;
 }
 
-function GameGrid({ games, openCardId, setOpenCardId }: GameGridProps) {
+export default function GameGrid({ games, openCardId, setOpenCardId }: GameGridProps) {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
             {games.map((game) => (
@@ -22,5 +22,3 @@ function GameGrid({ games, openCardId, setOpenCardId }: GameGridProps) {
         </div>
     );
 }
-
-export default GameGrid;

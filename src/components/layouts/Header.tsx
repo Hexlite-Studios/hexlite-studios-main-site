@@ -1,7 +1,7 @@
+import { useTranslation } from 'react-i18next';
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { HexliteLogo, DefaultConcept } from "../../assets/Assets";
-import { useTranslation } from 'react-i18next';
 import { supabase } from '../../lib/supabase';
 
 interface NavLink {
@@ -14,13 +14,14 @@ interface UserProfile {
     username: string;
 }
 
-function Header() {
+export default function Header() {
+    const { t } = useTranslation();
+    const [loading, setLoading] = useState(true);
+
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [user, setUser] = useState<UserProfile | null>(null);
-    const [loading, setLoading] = useState(true);
     const location = useLocation();
-    const { t } = useTranslation();
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const navLinks: NavLink[] = [
@@ -30,7 +31,7 @@ function Header() {
     ];
 
     useEffect(() => {
-        const checkUser = async () => {
+        const fetchProfile = async () => {
             const { data: { user: authUser } } = await supabase.auth.getUser();
             
             if (authUser) {
@@ -39,7 +40,7 @@ function Header() {
                     .select('avatar_url, username')
                     .eq('id', authUser.id)
                     .single();
-                
+                    setUser(profile);
                 if (profile) {
                     setUser(profile);
                 }
@@ -49,10 +50,10 @@ function Header() {
             setLoading(false);
         };
 
-        checkUser();
+        fetchProfile();
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
-            checkUser();
+            fetchProfile();
         });
 
         return () => {
@@ -66,14 +67,9 @@ function Header() {
                 setShowUserMenu(false);
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
-
-    const getUserDisplayName = () => {
-        return user?.username || 'User';
-    };
 
     const handleSignOut = async () => {
         await supabase.auth.signOut();
@@ -83,7 +79,7 @@ function Header() {
     };
 
     return (
-        <header className="bg-zinc-950 text-gray-200 p-2 shadow-lg border-b border-zinc-800 md:h-20">
+        <header className="bg-zinc-950 text-gray-200 p-2 shadow-lg border-b border-zinc-800 md:h-20 sticky top-0 z-50">
             <nav className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between">
                     <div>
@@ -127,7 +123,7 @@ function Header() {
                                             className="flex items-center gap-2 hover:text-white transition-colors duration-150"
                                         >
                                             <span className="text-lg">
-                                                {t('nav.greeting')}, {getUserDisplayName()}
+                                                {t('nav.greeting')}, {user.username}
                                             </span>
                                             <img
                                                 src={user.avatar_url || DefaultConcept}
@@ -138,7 +134,7 @@ function Header() {
                                         {showUserMenu && (
                                             <div className="absolute right-0 mt-2 w-48 bg-zinc-800 rounded-lg shadow-lg py-2 z-50 border border-zinc-700">
                                                 <Link
-                                                    to={`/u/${getUserDisplayName()}`}
+                                                    to={`/u/${user.username}`}
                                                     onClick={() => setShowUserMenu(false)}
                                                     className="block px-4 py-2 hover:bg-zinc-700 transition-colors"
                                                 >
@@ -205,7 +201,7 @@ function Header() {
                                 {!loading && user && (
                                     <>
                                         <Link
-                                            to={`/u/${getUserDisplayName()}`}
+                                            to={`/u/${user.username}`}
                                             onClick={() => setMobileMenuOpen(false)}
                                             className="flex items-center gap-3 px-4"
                                         >
@@ -215,7 +211,7 @@ function Header() {
                                                 className="h-12 w-12 rounded-full bg-gray-600 mb-1 object-cover"
                                             />
                                             <div>
-                                                <p className="font-semibold text-xl">{getUserDisplayName()}</p>
+                                                <p className="font-semibold text-xl">{user.username}</p>
                                             </div>
                                         </Link>
                                         <div className="border-t border-zinc-700" />
@@ -267,5 +263,3 @@ function Header() {
         </header>
     );
 }
-
-export default Header;

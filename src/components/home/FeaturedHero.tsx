@@ -1,7 +1,7 @@
+import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import 'swiper/swiper-bundle.css';
 
 
@@ -19,14 +19,19 @@ interface FeaturedHeroProps {
     items: FeaturedItem[];
 }
 
-function FeaturedHero({ items }: FeaturedHeroProps) {
+export default function FeaturedHero({ items }: FeaturedHeroProps) {
     const { t } = useTranslation();
 
     if (items.length === 0) {
         return (
             <div className="w-full bg-zinc-950/15">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="h-96 md:h-[500px] bg-zinc-900 rounded-xl animate-pulse" />
+                    <div className="h-96 md:h-[500px] bg-zinc-900/50 rounded-xl animate-pulse border border-zinc-800 flex items-end p-12" />
+                        <div className="space-y-4 w-1/2">
+                            <div className="h-4 w-20 bg-zinc-800 rounded"></div>
+                            <div className="h-10 w-3/4 bg-zinc-800 rounded"></div>
+                            <div className="h-12 w-32 bg-zinc-800 rounded-lg"></div>
+                         </div>
                 </div>
             </div>
         );
@@ -83,5 +88,3 @@ function FeaturedHero({ items }: FeaturedHeroProps) {
         </div>
     )
 }
-
-export default FeaturedHero
