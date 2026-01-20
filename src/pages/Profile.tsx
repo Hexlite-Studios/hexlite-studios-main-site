@@ -193,7 +193,7 @@ function Profile() {
                                             </div>
                                         ))
                                     ) : (
-                                        <p>{t('profile.no_badges')}</p>
+                                        <p>{t('profile.noBadges')}</p>
                                     )}
                                 </div>
                             </div>
@@ -234,7 +234,7 @@ function Profile() {
                             </div>
                             <div className="bg-zinc-700/60 rounded-xl p-6 border border-white/10 min-h-[200px]">
                                 <p className="leading-relaxed">
-                                    {user.bio || t('profile.no_bio')}
+                                    {user.bio || t('profile.noBio')}
                                 </p>
                             </div>
 
@@ -256,7 +256,7 @@ function Profile() {
                                                 </div>
                                             ))
                                         ) : (
-                                            <p>{t('profile.no_badges')}</p>
+                                            <p>{t('profile.noBadges')}</p>
                                         )}
                                     </div>
                                 </div>
