@@ -7,7 +7,7 @@
     "resources": "Resources",
     "signIn": "Sign In",
     "profile": "Profile",
-    "return": "Return",
+    "return": "Return to Main",
     "greeting": "Hello",
     "signOut": "Sign Out"
   },
@@ -140,7 +140,8 @@
     "noBadges": "No badges :(",
     "about": "About",
     "userSince": "User Since:",
-    "noBio": "Very awesome user with no bio provided."
-
+    "noBio": "Very awesome user with no bio provided.",
+    "notFoundTitle": "Profile Not Found",
+    "notFoundMessage": "The profile you are looking for does not exist."
   }
 }

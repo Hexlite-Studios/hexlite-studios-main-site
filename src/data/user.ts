@@ -14,6 +14,15 @@ export interface User {
 
     background_type?: 'color' | 'image' | 'gradient' | null;
     background_value?: string | null;
+
+    subscription_tier?: 'free' | 'supporter';
+    subscription_expires_at?: string | null;
+    stripe_customer_id?: string | null;
+    stripe_subscription_id?: string | null;
+    
+    avatar_ring_enabled?: boolean;
+    avatar_ring_color?: string;
+    profile_border_color?: string;
 }
 
 export interface Badge {

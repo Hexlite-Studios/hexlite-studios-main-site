@@ -94,5 +94,26 @@ export const userService = {
       .getPublicUrl(filePath);
 
     return data.publicUrl;
+  },
+
+  async uploadBackgroundImage(userId: string, file: File): Promise<string | null> {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${userId}-bg-${Date.now()}.${fileExt}`;
+    const filePath = `backgrounds/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('avatars') // You can create a separate 'backgrounds' bucket if you prefer
+      .upload(filePath, file);
+
+    if (uploadError) {
+      console.error('Error uploading background:', uploadError);
+      return null;
+    }
+
+    const { data } = supabase.storage
+      .from('avatars')
+      .getPublicUrl(filePath);
+
+    return data.publicUrl;
   }
 };
