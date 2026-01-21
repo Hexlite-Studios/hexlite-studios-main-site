@@ -203,20 +203,20 @@ function Profile() {
                                     >
                                         <img
                                             src={user.avatar_url || '/default-avatar.png'}
-                                            alt={`${user.username}'s avatar`}
+                                            alt={`${user.display_name}'s avatar`}
                                             className="w-full h-full object-cover"
                                         />
                                     </div>
                                 </div>
                                 <div className="text-center">
-                                    <h1 className="text-2xl font-bold">{user.username}</h1>
+                                    <h1 className="text-2xl font-bold">{user.display_name}</h1>
                                     <p className="text-lg capitalize">{user.title}</p>
                                 </div>
                             </div>
 
                             {/* Desktop username */}
                             <div className="hidden md:block mb-6">
-                                <h1 className="text-3xl font-bold">{user.username}</h1>
+                                <h1 className="text-3xl font-bold">{user.display_name}</h1>
                                 <p className="text-xl capitalize">{user.title}</p>
                             </div>
                             <div className="bg-zinc-700/60 rounded-xl p-6 border border-white/10 min-h-[200px]">
