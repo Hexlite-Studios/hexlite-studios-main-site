@@ -13,7 +13,7 @@ export interface User {
     twitch_username?: string | null;
 
     background_type?: 'color' | 'image' | 'gradient' | null;
-    background_value?: string | null;
+    background_url?: string | null;
 
     subscription_tier?: 'free' | 'supporter';
     subscription_expires_at?: string | null;

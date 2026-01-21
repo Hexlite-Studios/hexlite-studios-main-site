@@ -11,6 +11,8 @@ import ArcaneGuardians from './pages/ArcaneGuardians';
 import Warfront from './pages/Warfront';
 import SignIn from './pages/SignIn';
 import Profile from './pages/Profile';
+import Settings from './pages/Settings';
+import ProtectedRoute from './components/layouts/ProtectedRoute';
 
 function App() {
 
@@ -30,6 +32,7 @@ function App() {
           <Route path="/sign-in" element={<SignIn />} />
         </Route>
         <Route element={<ProfileLayout />}>
+          <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
           <Route path="/u/:username" element={<Profile />} />
         </Route>
       </Routes>

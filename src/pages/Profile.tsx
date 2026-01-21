@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { userService } from '../services/userService';
 import type { User, UserBadge } from '../data/user';
 import { useAuth } from '../contexts/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinner';
-//import SettingsModal from '../components/profile/SettingsModal';
+import { UserRoundPlus, Ellipsis, Mail, Settings } from 'lucide-react';
 
 
 function Profile() {
@@ -16,7 +16,6 @@ function Profile() {
     const [badges, setBadges] = useState<UserBadge[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [notFound, setNotFound] = useState<boolean>(false);
-    //const [settingsOpen, setSettingsOpen] = useState(false);
     const isOwnProfile = currentUser?.id === user?.id;
     const isLoggedIn = !!currentUser;
     const isSupporter = user?.subscription_tier === 'supporter'
@@ -71,10 +70,6 @@ function Profile() {
         });
     };
 
-    //const handleProfileUpdates = (updatedUser: User) => {
-    //    setUser(updatedUser);
-    //};
-
     const avatarStyles: React.CSSProperties = {};
     if (isSupporter && user.avatar_ring_enabled && user.avatar_ring_color) {
         avatarStyles.boxShadow = `0 0 20px 5px ${user.avatar_ring_color}`;
@@ -91,14 +86,14 @@ function Profile() {
     }
 
     const backgroundStyles: React.CSSProperties = {};
-    if (user.background_type === 'color' && user.background_value) {
-        backgroundStyles.backgroundColor = user.background_value;
-    } else if (user.background_type === 'image' && user.background_value) {
-        backgroundStyles.backgroundImage = `url(${user.background_value})`;
+    if (user.background_type === 'color' && user.background_url) {
+        backgroundStyles.backgroundColor = user.background_url;
+    } else if (user.background_type === 'image' && user.background_url) {
+        backgroundStyles.backgroundImage = `url(${user.background_url})`;
         backgroundStyles.backgroundSize = 'cover';
         backgroundStyles.backgroundPosition = 'center';
-    } else if (user.background_type === 'gradient' && user.background_value) {
-        backgroundStyles.backgroundImage = user.background_value;
+    } else if (user.background_type === 'gradient' && user.background_url) {
+        backgroundStyles.backgroundImage = user.background_url;
     }
 
     return (
@@ -117,23 +112,20 @@ function Profile() {
                                     className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition cursor-pointer"
                                     title="Message"
                                 >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
+                                    <Mail />
                                 </button>
                                 <button
                                     disabled
                                     className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition cursor-pointer"
                                     title="Friendo"
                                 >
-                                    <span className="text-xl">➕</span>
+                                    <UserRoundPlus />
                                 </button>
                                 <button
-                                    //onClick={() => setSettingsOpen(true)}
                                     className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition cursor-pointer"
                                     title="Options"
                                 >
-                                    <span className="text-xl">⋯</span>
+                                    <Ellipsis />
                                 </button>
                             </>
                         )}
@@ -144,20 +136,15 @@ function Profile() {
                                     className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition cursor-pointer"
                                     title="Inbox"
                                 >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
+                                    <Mail />
                                 </button>
-                                <button
-                                    //onClick={() => setSettingsOpen(true)}
+                                <Link
+                                    to="/settings"
                                     className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition cursor-pointer"
                                     title="Settings"
                                 >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                </button>
+                                    <Settings />
+                                </Link>
                             </>
                         )}
                     </div>

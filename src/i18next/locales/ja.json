@@ -140,5 +140,26 @@
     "about": "概要",
     "userSince": "ユーザー登録日:",
     "noBio": "素晴らしいユーザーですが、自己紹介はありません。"
+  },
+  "settings": {
+    "title": "アカウント設定",
+    "subtitle": "アカウントと設定を管理する",
+    "menu": {
+      "profile": "プロフィール",
+      "profiledesc": "プロフィール情報を編集する",
+      "account": "アカウント",
+      "accountdesc": "アカウント設定を管理する",
+      "security": "セキュリティ",
+      "securitydesc": "セキュリティ設定を更新する",
+      "subscription": "サブスクリプション",
+      "subscriptiondesc": "サブスクリプションと請求を管理する",
+      "danger": "危険ゾーン",
+      "dangerdesc": "アカウントの重要な操作を管理する"
+    },
+    "profile": {
+      "displayname": "表示名",
+      "changebackground": "背景を変更",
+      "savechanges": "変更を保存"
+    }
   }
 }

@@ -135,5 +135,26 @@
     "about": "Acerca de",
     "userSince": "Usuario desde:",
     "noBio": "Usuario muy genial sin biografía proporcionada."
+  },
+  "settings": {
+    "title": "Configuración",
+    "subtitle": "Gestiona tu cuenta y preferencias",
+    "menu": {
+      "profile": "Perfil",
+      "profiledesc": "Edita la información de tu perfil",
+      "account": "Cuenta",
+      "accountdesc": "Gestiona la configuración de tu cuenta",
+      "security": "Seguridad",
+      "securitydesc": "Actualiza tus preferencias de seguridad",
+      "subscription": "Suscripciones",
+      "subscriptiondesc": "Gestiona tus suscripciones y facturación",
+      "danger": "Zona de Peligro",
+      "dangerdesc": "Gestiona acciones sensibles de la cuenta"
+    },
+    "profile": {
+      "displayname": "Nombre para mostrar",
+      "changebackground": "Cambiar fondo",
+      "savechanges": "Guardar cambios"
+    }
   }
 }

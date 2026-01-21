@@ -143,5 +143,26 @@
     "noBio": "Very awesome user with no bio provided.",
     "notFoundTitle": "Profile Not Found",
     "notFoundMessage": "The profile you are looking for does not exist."
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account and preferences",
+    "menu": {
+      "profile": "Profile",
+      "profiledesc": "Edit your profile information",
+      "account": "Account",
+      "accountdesc": "Manage your account settings",
+      "security": "Security",
+      "securitydesc": "Update your security preferences",
+      "subscription": "Subscriptions",
+      "subscriptiondesc": "Manage your subscriptions and billing",
+      "danger": "Danger Zone",
+      "dangerdesc": "Handle sensitive account actions"
+    },
+    "profile": {
+      "displayname": "Display Name",
+      "changebackground": "Change Background",
+      "savechanges": "Save Changes"
+    }
   }
 }
