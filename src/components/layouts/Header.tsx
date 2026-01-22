@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { HexliteLogo, DefaultConcept } from '../../assets/Assets';
-import { House, Info, Book, X, Menu, LogIn, LogOut } from 'lucide-react';
+import { House, Info, Book, X, Menu, LogIn, LogOut, Settings } from 'lucide-react';
 
 interface NavLink {
     label: string;
@@ -13,6 +13,7 @@ interface NavLink {
 
 export default function Header() {
     const { t } = useTranslation();
+    
     const { user, userProfile, signOut, loading } = useAuth();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
@@ -103,21 +104,24 @@ export default function Header() {
                                             <Link
                                                 to={`/u/${userProfile?.username || username}`}
                                                 onClick={() => setShowUserMenu(false)}
-                                                className="block px-4 py-2 hover:bg-zinc-700 transition-colors"
+                                                className="flex px-4 py-2 items-center gap-1 hover:bg-zinc-700 transition-colors"
                                             >
+                                                <Info className="w-5 h-5" />
                                                 {t('nav.profile')}
                                             </Link>
                                             <Link
                                                 to="/settings"
                                                 onClick={() => setShowUserMenu(false)}
-                                                className="block px-4 py-2 hover:bg-zinc-700 transition-colors"
+                                                className="flex px-4 py-2 items-center gap-1 hover:bg-zinc-700 transition-colors"
                                             >
+                                                <Settings className="w-5 h-5" />
                                                 {t('nav.settings')}
                                             </Link>
                                             <button
                                                 onClick={handleSignOut}
-                                                className="w-full text-left px-4 py-2 hover:bg-zinc-700 transition-colors text-red-400"
+                                                className="flex w-full text-left items-center gap-1 px-4 py-2 hover:bg-zinc-700 transition-colors text-red-500"
                                             >
+                                                <LogOut className="w-5 h-5" />
                                                 {t('nav.signOut')}
                                             </button>
                                         </div>
@@ -179,7 +183,7 @@ export default function Header() {
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="flex items-center text-lg gap-3 pt-4 pl-3 border-t border-zinc-800 mt-4"
                                     >
-                                        <Info className="w-5 h-5" />
+                                        <Settings className="w-5 h-5" />
                                         {t('nav.settings')}
                                     </Link>
                                     <button

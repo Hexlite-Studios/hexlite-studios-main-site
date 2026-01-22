@@ -17,7 +17,7 @@ export default function Settings() {
 
     return (
         <div className="min-h-screen bg-zinc-900 text-gray-200 pt-20 pb-12 px-4 md:px-8">
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-7xl mx-auto">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-white">{t('settings.title')}</h1>
                     <p className="text-gray-400">{t('settings.subtitle')}</p>
@@ -47,7 +47,7 @@ export default function Settings() {
                         ))}
                     </nav>
                     <main className="flex-1 min-w-0">
-                        <div className="bg-black/20 border border-white/5 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+                        <div className="bg-black/20 border-2 border-white/15 rounded-xl backdrop-blur-sm">
                             {activeTab === 'profile' && <ProfileEditor />}
                             {activeTab === 'account' && <div>Account Settings Coming Soon...</div>}
                             {activeTab === 'security' && <div>Security Settings Coming Soon...</div>}

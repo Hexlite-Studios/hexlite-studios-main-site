@@ -23,7 +23,7 @@ export interface User {
     
     avatar_ring_enabled?: boolean;
     avatar_ring_color?: string;
-    profile_border_color?: string;
+    theme_color?: string;
 }
 
 export interface Badge {

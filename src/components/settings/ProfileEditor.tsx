@@ -1,25 +1,29 @@
 import { useTranslation } from 'react-i18next';
+import { cn } from '../../lib/cn';
 import { useAuth } from '../../contexts/AuthContext';
 import ImageUploader from './ImageUploader';
-import { Camera } from 'lucide-react';
+import { Camera, RefreshCw, Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { getTheme } from '../../lib/colors';
 
 export default function ProfileEditor() {
     const { t } = useTranslation();
+    
     const { userProfile, updateProfile } = useAuth();
     const [displayName, setDisplayName] = useState('');
     const [bio, setBio] = useState('');
-    const [themeColor, setThemeColor] = useState('zinc');
+    const [themeColor, setThemeColor] = useState('white');
     const [previewAvatar, setPreviewAvatar] = useState<string | null>(null);
     const [previewBg, setPreviewBg] = useState<string | null>(null);
     const [isDirty, setIsDirty] = useState(false);
-    const isSupporter = userProfile?.role === 'supporter' || userProfile?.role === 'admin';
+    const isSupporter = userProfile?.subscription_tier === 'supporter' || userProfile?.role === 'admin';
+    const activeTheme = getTheme(themeColor);
 
     useEffect(() => {
         if (userProfile) {
             setDisplayName(userProfile.display_name || userProfile.username || '');
             setBio(userProfile.bio || '');
-            setThemeColor(userProfile.theme_color || 'zinc');
+            setThemeColor(userProfile.theme_color || 'white');
         }
     }, [userProfile]);
 
@@ -28,7 +32,7 @@ export default function ProfileEditor() {
         const hasChanges = 
             displayName !== (userProfile.display_name || userProfile.username) ||
             bio !== (userProfile.bio || '') ||
-            themeColor !== (userProfile.theme_color || 'zinc') ||
+            themeColor !== (userProfile.theme_color || 'white') ||
             previewAvatar !== null ||
             previewBg !== null;
         setIsDirty(hasChanges);
@@ -55,95 +59,165 @@ export default function ProfileEditor() {
     };
 
     return (
-        <div className="space-y-10">
-            <section className="relative group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
-                <div className="h-32 md:h-48 w-full bg-zinc-800 relative">
-                    {activeBg ? (
-                        <img src={activeBg} alt="Cover" className="w-full h-full object-cover opacity-100" />
-                    ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900" />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-90" />
-                    <div className="absolute top-4 right-4 z-20">
-                        {isSupporter ? (
-                            <ImageUploader 
-                                type="background" 
-                                currentImage={activeBg} 
-                                onUploadComplete={setPreviewBg}
-                            >
-                                <button className="flex items-center gap-2 bg-black/50 hover:bg-black/70 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-xs font-bold transition-all border border-white/10 hover:border-emerald-500/50">
-                                    <Camera className="w-3 h-3" />
-                                    {t('settings.profile.changebackground')}
-                                </button>
-                            </ImageUploader>
-                        ) : (
-                            <></>
+        <div>
+            <div className="space-y-10 rounded-t border-b-2 border-zinc-600" style={activeBg ? { backgroundImage: `url(${activeBg})`, backgroundSize: 'cover', backgroundPosition: 'center'} : { backgroundColor: '#242424' }}>
+                <div className="w-full max-w-2xl mx-auto">
+                    <div className={cn(
+                        "bg-zinc-800/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-white/10",
+                        isSupporter && activeTheme.border
                         )}
-                    </div>
-                </div>
-                <div className="px-6 md:px-8 pb-6 md:pb-8 -mt-12 md:-mt-16 flex flex-col md:flex-row items-center md:items-end gap-4 md:gap-6 relative z-10 text-center md:text-left">
-                    <div className="relative group/avatar">
-                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-zinc-950 bg-zinc-800 overflow-hidden shadow-xl relative">
-                            <img 
-                                src={activeAvatar || '/default-avatar.png'} 
-                                alt="Avatar" 
-                                className="w-full h-full object-cover" 
-                            />
-                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover/avatar:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                                <Camera className="w-6 h-6 text-white" />
+                    >
+                        <div>
+                            {isSupporter ? (
+                                <ImageUploader
+                                    type="background"
+                                    currentImage={activeBg}
+                                    onUploadComplete={setPreviewBg}
+                                >
+                                    <button className="absolute top-4 right-4 flex items-center gap-2 bg-black/50 hover:bg-black/70 text-white px-3 py-1.5 rounded-full text-xs backdrop-blur-md transition-all">
+                                        <Camera className="size-4" />
+                                        <span>{t('settings.profile.changebackground')}</span>
+                                    </button>
+                                </ImageUploader>
+                            ) : (
+                                <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1.5 rounded-full text-xs backdrop-blur-md">
+                                    {t('settings.profile.supporterbackground')}
+                                </div>
+                            )}
+                        </div>
+                        <div className="p-8 pt-2 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-start mt-2">
+                            <div className="flex flex-col items-center md:items-start gap-6">
+                                <div className={cn(
+                                    "relative", 
+                                    "rounded-full size-32 md:size-40 overflow-hidden",
+                                    "ring-2 ring-white/20",
+                                    isSupporter && activeTheme.ring
+                                    )}
+                                >
+                                    <div>
+                                        <img
+                                            src={activeAvatar || '/default-avatar.png'}
+                                            alt="Avatar Preview"
+                                            className="size-full object-cover"
+                                        />
+                                    </div>
+                                    <ImageUploader
+                                        type="avatar"
+                                        currentImage={activeAvatar}
+                                        onUploadComplete={setPreviewAvatar}
+                                    >
+                                        <button className="absolute flex gap-1 justify-center rounded-full size-full items-center bg-black/50 inset-0 hover:bg-black/70 hover:text-white md:opacity-0 md:hover:opacity-100 transition-opacity duration-300">
+                                            <Camera className="size-4" />
+                                            <span>{t('settings.profile.changeavatar')}</span>
+                                        </button>
+                                    </ImageUploader>
+                                </div>
+                            </div>
+                            <div className="text-center md:text-left space-y-6">
+                                <div>
+                                    <label className="block text-sm font-medium mb-1">{t('settings.profile.displayname')}</label>
+                                    <input
+                                        type="text"
+                                        value={displayName}
+                                        onChange={(e) => setDisplayName(e.target.value)}
+                                        placeholder="ExtraordinaryUser"
+                                        className={cn(
+                                            "w-full px-4 py-2 rounded-lg bg-zinc-900 border border-white/20 outline-none",
+                                            "text-white focus:border-white/70 focus:shadow-medium transition-all",
+                                            
+                                        )}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium mb-2">{t('settings.profile.changebio')}</label>
+                                    <textarea
+                                        value={bio}
+                                        onChange={(e) => setBio(e.target.value)}
+                                        rows={3}
+                                        maxLength={160}
+                                        placeholder="This is my bio..."
+                                        className={cn(
+                                            "w-full bg-zinc-900 border border-white/20 rounded-lg p-3 text-white resize-none outline-none",
+                                            "text-white focus:border-white/70 focus:shadow-medium transition-all"
+                                        )}
+                                    />
+                                </div>
                             </div>
                         </div>
-                        <div className="absolute inset-0 rounded-full cursor-pointer z-50">
-                            <ImageUploader 
-                                type="avatar" 
-                                currentImage={activeAvatar} 
-                                onUploadComplete={setPreviewAvatar}
-                                isSupporter={isSupporter}
-                            >
-                                <div className="w-full h-full rounded-full" /> 
-                            </ImageUploader>
-                        </div>
-                    </div>
-                    <div className="flex-1 mb-1">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight drop-shadow-lg">
-                            {displayName || 'Display Name'}
-                        </h2>
-                        <div className="flex items-center justify-center md:justify-start gap-2">
-                            <p className={`font-mono text-sm drop-shadow-md text-${themeColor}-400`}>
-                                {userProfile?.username || 'username'}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                    <div>
-                        <label className="block text-sm font-bold mb-2">
-                            {t('settings.profile.displayname')}
-                        </label>
-                        <input
-                            value={displayName}
-                            onChange={(e) => setDisplayName(e.target.value)}
-                            className="w-full px-4 py-2 border border-zinc-700 rounded-lg bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-zinc-500"
-                            placeholder="John Doe"
-                            maxLength={20}
-                        />
                     </div>
                 </div>
             </div>
-            <div className="pt-6 border-t border-zinc-800 flex justify-end">
+            <div>
+                <div>
+                    <h3 className="text-lg font-semibold text-white text-center mt-5">{t('settings.profile.appearance')}</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] m-4 mb-6">
+                    <div className="flex flex-col justify-center items-center">
+                        <label className="block font-bold mb-4">{t('settings.profile.bgcolor')}</label>
+                        <div className="flex flex-wrap gap-3">
+                            {['zinc', 'red', 'blue', 'emerald', 'violet', 'amber', 'rose'].map((color) => (
+                                <button
+                                    disabled
+                                    key={color}
+                                    onClick={() => setPreviewBg(color)}
+                                    className={cn(
+                                        "size-10 rounded-full border-2 transition-all hover:scale-110 shadow-lg cursor-not-allowed opacity-50",
+                                        `bg-${color}-500`,
+                                        previewBg === color ? 'border-white/80' : 'border-white/20'
+                                    )}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                {isSupporter ? (
+                    <div>
+                        <div>
+                            <h3 className="text-lg font-semibold text-white text-center mt-5">{t('settings.profile.supporter')}</h3>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] m-4 mb-6">
+                            <div className="flex flex-col justify-center items-center">
+                                <label className="block font-bold mb-4">{t('settings.profile.themeaccent')}</label>
+                                <div className="flex flex-wrap gap-3">
+                                    {['zinc', 'red', 'blue', 'emerald', 'violet', 'amber', 'rose'].map((color) => (
+                                        <button
+                                            key={color}
+                                            onClick={() => setThemeColor(color)}
+                                            className={cn(
+                                                "size-10 rounded-full border-2 transition-all hover:scale-110 shadow-lg",
+                                                `bg-${color}-500`,
+                                                themeColor === color ? 'border-white/80' : 'border-white/20'
+                                            )}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="flex flex-col justify-center items-center">
+                                <label className="block font-bold mb-4">{t('settings.profile.glow')}</label>
+                                <button className="bg-zinc-700 hover:bg-zinc-600 rounded-lg p-3 disabled cursor-not-allowed opacity-50">
+                                    {t('settings.profile.glow')}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="p-4 text-center text-sm text-gray-400 italic">
+                        {t('settings.profile.supporter')}
+                    </div>
+                )}
+            </div>
+            <div className="flex justify-center p-4 border-t border-zinc-800">
                 <button
                     onClick={handleSave}
                     disabled={!isDirty}
-                    className={`
-                        px-8 py-3 font-bold rounded-lg transition-all shadow-lg
-                        ${isDirty 
-                            ? 'bg-white text-zinc-950 hover:bg-gray-200 hover:scale-105' 
-                            : 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
-                        }
-                    `}
+                    className={cn(
+                        "flex items-center rounded-lg gap-2 px-8 py-3 font-bold transition-all shadow-lg",
+                        isDirty ? "bg-zinc-600 hover:bg-zinc-500" : "bg-zinc-700 cursor-not-allowed opacity-50"
+                    )}
                 >
+                    {isDirty ? <Save className="size-4" /> : <RefreshCw className="size-4" />}
                     {t('settings.profile.savechanges')}
                 </button>
             </div>

@@ -11,7 +11,9 @@ export interface UserProfile {
     theme_color: string | null;
     avatar_url: string | null;
     background_url: string | null;
+    background_type: string | null;
     role: string;
+    subscription_tier: string;
 }
 
 interface AuthContextType {
