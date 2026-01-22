@@ -156,7 +156,7 @@ export default function Header() {
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="flex items-center border-b border-zinc-800 pb-4 mb-4"
                                     >
-                                        <img src={avatarSrc} className="h-16 w-16 rounded-full object-cover" alt="Avatar" />
+                                        <img src={avatarSrc} className="h-10 w-10 rounded-full object-cover" alt="Avatar" />
                                         <span className="ml-3 text-lg font-semibold">{username}</span>
                                     </Link>
                                 </>
