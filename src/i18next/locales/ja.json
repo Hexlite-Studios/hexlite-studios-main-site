@@ -9,7 +9,8 @@
     "profile": "プロフィール",
     "return": "メインに戻る",
     "greeting": "こんにちは",
-    "signOut": "サインアウト"
+    "signOut": "サインアウト",
+    "settings": "設定"
   },
   "signIn": {
     "usernameLabel": "ユーザー名:",

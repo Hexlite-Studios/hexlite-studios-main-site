@@ -9,7 +9,8 @@
     "profile": "Perfil",
     "return": "Regresar al Inicio",
     "greeting": "Hola",
-    "signOut": "Cerrar sesión"
+    "signOut": "Cerrar sesión",
+    "settings": "Configuración"
   },
   "signIn": {
     "usernameLabel": "Nombre de usuario:",

@@ -9,7 +9,8 @@
     "profile": "Profile",
     "return": "Return to Main",
     "greeting": "Hello",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "settings": "Settings"
   },
   "signIn": {
     "usernameLabel": "Username:",
