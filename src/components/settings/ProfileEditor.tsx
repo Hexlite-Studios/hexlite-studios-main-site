@@ -14,7 +14,9 @@ export default function ProfileEditor() {
     const [bio, setBio] = useState('');
     const [themeColor, setThemeColor] = useState('white');
     const [previewAvatar, setPreviewAvatar] = useState<string | null>(null);
-    const [previewBg, setPreviewBg] = useState<string | null>(null);
+    const [previewBackground, setPreviewBackground] = useState<string | null>(null);
+    //const [pendingAvatarFile, setPendingAvatarFile] = useState<File | null>(null);
+    //const [pendingBackgroundFile, setPendingBackgroundFile] = useState<File | null>(null);
     const [isDirty, setIsDirty] = useState(false);
     const isSupporter = userProfile?.subscription_tier === 'supporter' || userProfile?.role === 'admin';
     const activeTheme = getTheme(themeColor);
@@ -34,12 +36,19 @@ export default function ProfileEditor() {
             bio !== (userProfile.bio || '') ||
             themeColor !== (userProfile.theme_color || 'white') ||
             previewAvatar !== null ||
-            previewBg !== null;
+            previewBackground !== null;
         setIsDirty(hasChanges);
-    }, [displayName, bio, themeColor, previewAvatar, previewBg, userProfile]);
+    }, [displayName, bio, themeColor, previewAvatar, previewBackground, userProfile]);
 
     const activeAvatar = previewAvatar || userProfile?.avatar_url || null;
-    const activeBg = previewBg || userProfile?.background_url || null;
+    const activeBg = previewBackground || userProfile?.background_url || null;
+
+    useEffect(() => {
+    return () => {
+        if (previewAvatar) URL.revokeObjectURL(previewAvatar);
+        if (previewBackground && previewBackground.startsWith('blob:')) URL.revokeObjectURL(previewBackground);
+    };
+    }, [previewAvatar, previewBackground]);
 
     const handleSave = async () => {
         try {
@@ -51,7 +60,7 @@ export default function ProfileEditor() {
                 background_url: activeBg
             });
             setPreviewAvatar(null);
-            setPreviewBg(null);
+            setPreviewBackground(null);
             alert("Profile updated!");
         } catch (error) {
             console.error(error);
@@ -72,7 +81,7 @@ export default function ProfileEditor() {
                                 <ImageUploader
                                     type="background"
                                     currentImage={activeBg}
-                                    onUploadComplete={setPreviewBg}
+                                    onUploadComplete={setPreviewBackground}
                                 >
                                     <button className="absolute top-4 right-4 flex items-center gap-2 bg-black/50 hover:bg-black/70 text-white px-3 py-1.5 rounded-full text-xs backdrop-blur-md transition-all">
                                         <Camera className="size-4" />
@@ -159,11 +168,11 @@ export default function ProfileEditor() {
                                 <button
                                     disabled
                                     key={color}
-                                    onClick={() => setPreviewBg(color)}
+                                    onClick={() => setPreviewBackground(color)}
                                     className={cn(
-                                        "size-10 rounded-full border-2 transition-all hover:scale-110 shadow-lg cursor-not-allowed opacity-50",
+                                        "size-10 rounded-full border-2 transition-all hover:scale-110 shadow-lg",
                                         `bg-${color}-500`,
-                                        previewBg === color ? 'border-white/80' : 'border-white/20'
+                                        previewBackground === color ? 'border-white/80' : 'border-white/20'
                                     )}
                                 />
                             ))}

@@ -41,9 +41,8 @@ export default function ImageUploader({
         }
 
         try {
-            const colName = type === 'avatar' ? 'avatar_url' : 'background_url';
             const bucketName = type === 'avatar' ? 'avatars' : 'backgrounds';
-            const newUrl = await uploadImage(file, bucketName, colName);
+            const newUrl = await uploadImage(file, bucketName);
             onUploadComplete(newUrl);
         } catch (error) {
             alert('Error uploading image');
